@@ -37,6 +37,7 @@ public class DeviceController : MonoBehaviour
                 // GameObject go = Instantiate(_pourPref, _fireTransform.position, Quaternion.Euler(0,0,0));
                 if(_sousCount == 0)
                 {
+                    DamageNum.Instance.ShowNumber(3f, transform);
                     SoundManager.Instance.Play("Souce");
                     GameObject go2 = Instantiate(_pouredPref, hit.transform.position, Quaternion.Euler(-90,0,90));
                     go2.transform.parent = hit.transform;

@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
         _pauseButton.enabled = false;
         _exitPauseButton.enabled = false;
         _player = FindObjectOfType<PlayerController>();
-        TapToPlay.transform.DOScale(new Vector3(6,2f,2f), 1f).SetLoops(-1, LoopType.Yoyo);
+        TapToPlay.transform.DOScale(new Vector3(5.7f,1.5f,1.6f), 1f).SetLoops(-1, LoopType.Yoyo);
         _finalRoad.GetComponent<FinalRoadPancakes>().OnFinish += OpenWinPanel;
     }
     private void OnEnable()
@@ -139,11 +139,11 @@ public class UIManager : MonoBehaviour
         panelImg.color = new Color(0, 0, 0, 0);
         DOTween.To(() => panelImg.color, x => panelImg.color = x, new Color32(32, 32, 32, 180), 0.2f);
         WinUIPanel.transform.DOScale(new Vector3(1.123f, 1.123f, 1.123f), 0.2f);
-        _feedByMoney.text = $"{_data.Money.ToString()} $";
+        _feedByMoney.text = $"{DamageNum.Instance.TotalMoney.ToString()} $";
         // _getMoney.text = (System.Convert.ToInt32(DamageNum.Instance.TotalMoney * 0.25f)).ToString();
 
         // DOTween.To(() => int.Parse(_feedByMoney.text), (x) => _feedByMoney.text = x.ToString(),System.Convert.ToInt32(_data.Money * 1f) + 0, 2f);
-        DOTween.To(() => int.Parse(_getMoney.text), (x) => _getMoney.text = x.ToString(), System.Convert.ToInt32(_data.Money* 0.2f) + 0, 2f);
+        DOTween.To(() => int.Parse(_getMoney.text), (x) => _getMoney.text = x.ToString(), System.Convert.ToInt32(DamageNum.Instance.TotalMoney*0.6f) + 0, 2f);
 
 
     }

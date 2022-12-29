@@ -14,11 +14,11 @@ public class DamageNum : MonoBehaviour
     [SerializeField] public TMP_Text _money;
     private Transform _playerTranform;
     // private float _numberMultipl = 2.3f;
-    private float _newnumberMultipl;
-    // private float _totalMoney = 0;
+    // private float _newnumberMultipl;
+    private float _totalMoneyInOneRound = 0;
     [SerializeField] MoneySO _data;
 
-    public int TotalMoney => _data.Money;
+    public float TotalMoney => _totalMoneyInOneRound;
     private void Awake()
     {
         if (Instance == null)
@@ -31,27 +31,29 @@ public class DamageNum : MonoBehaviour
 
     public void ShowNumber(float numberMultpl, Transform _transform)
     {
-        for (int i = 1; i < CollectedCoffeeData.Instance.CoffeeList.Count; i++)
-        {
-            float NewnumberMultipl = numberMultpl * i;
-            _newnumberMultipl = NewnumberMultipl;
+        // for (int i = 1; i < CollectedCoffeeData.Instance.CoffeeList.Count; i++)
+        // {
+            float NewnumberMultipl = numberMultpl;
+            // _newnumberMultipl = NewnumberMultipl;
             _data.Money += System.Convert.ToInt32(NewnumberMultipl);
+            _totalMoneyInOneRound++;
 
-        }
-        DamageNumber damageNumber = numberPrefab.Spawn(_transform.position, _newnumberMultipl);
+        // }
+        DamageNumber damageNumber = numberPrefab.Spawn(_transform.position, NewnumberMultipl);
         _money.text = System.Convert.ToInt32(_data.Money).ToString();
     }
 
     public void ShowNumberDecrease(float numberMultpl, Transform _transform)
     {
-        for (int i = 1; i < CollectedCoffeeData.Instance.CoffeeList.Count; i++)
-        {
-            float NewnumberMultipl = numberMultpl * i;
-            _newnumberMultipl = NewnumberMultipl;
+        // for (int i = 1; i < CollectedCoffeeData.Instance.CoffeeList.Count; i++)
+        // {
+            float NewnumberMultipl = numberMultpl;
+            // _newnumberMultipl = NewnumberMultipl;
             _data.Money -= System.Convert.ToInt32(NewnumberMultipl);
+            _totalMoneyInOneRound--;
 
-        }
-        DamageNumber damageNumber = numberPrefabDecrease.Spawn(_transform.position, _newnumberMultipl);
+        // }
+        DamageNumber damageNumber = numberPrefabDecrease.Spawn(_transform.position, NewnumberMultipl);
         if ( _data.Money < 0)
              _data.Money = 0;
         else
